@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Создать пост{% endblock %}
+{% block content %}
+<h1>Новый пост</h1>
+<form class="form" method="post" action="{{ url_for('create') }}" novalidate id="createForm">
+    <label>
+        Заголовок
+        <input type="text" name="title" required value="{{ title_value or '' }}">
+    </label>
+    <label>
+        Содержимое (Markdown)
+        <textarea name="content" rows="12" required>{{ content_value or '' }}</textarea>
+    </label>
+    <div class="form-actions">
+        <button class="btn primary" type="submit">Опубликовать</button>
+        <a class="btn" href="{{ url_for('index') }}">Отмена</a>
+    </div>
+</form>
+{% endblock %}
+
+
+

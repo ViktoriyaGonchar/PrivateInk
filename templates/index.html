@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Блог — Главная{% endblock %}
+{% block content %}
+<h1>Лента постов</h1>
+
+{% if posts %}
+    <div class="posts">
+        {% for p in posts %}
+        <article class="post">
+            <header>
+                <h2 class="post-title">{{ p.title }}</h2>
+                <div class="meta">Автор: {{ p.author }} • {{ p.created_at | replace('T',' ') }}</div>
+            </header>
+            <div class="post-content">{{ p.content_html | safe }}</div>
+        </article>
+        {% endfor %}
+    </div>
+
+    <nav class="pagination">
+        {% if page > 1 %}
+            <a class="btn" href="{{ url_for('index_page', page=page-1) }}">Предыдущая</a>
+        {% endif %}
+        {% for num in range(1, total_pages + 1) %}
+            {% if num == page %}
+                <span class="page current">{{ num }}</span>
+            {% else %}
+                <a class="page" href="{{ url_for('index_page', page=num) }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+        {% if page < total_pages %}
+            <a class="btn" href="{{ url_for('index_page', page=page+1) }}">Следующая</a>
+        {% endif %}
+    </nav>
+{% else %}
+    <p>Постов пока нет. {% if g.user %}<a href="{{ url_for('create') }}">Создайте первый пост</a>.{% else %}<a href="{{ url_for('register') }}">Зарегистрируйтесь</a> и начните писать!{% endif %}</p>
+{% endif %}
+{% endblock %}
+
+
+

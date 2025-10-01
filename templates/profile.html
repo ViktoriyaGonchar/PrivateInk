@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Профиль{% endblock %}
+{% block content %}
+<h1>Профиль</h1>
+<div class="profile-header">
+    <div>
+        <div class="username">{{ g.user.username }}</div>
+        <div class="email">{{ g.user.email }}</div>
+    </div>
+    <a class="btn" href="{{ url_for('create') }}">Новый пост</a>
+    </div>
+
+{% if my_posts %}
+<ul class="my-posts">
+    {% for p in my_posts %}
+    <li>
+        <span class="title">{{ p.title }}</span>
+        <span class="date">{{ p.created_at | replace('T',' ') }}</span>
+        <a class="btn small" href="{{ url_for('edit', post_id=p.id) }}">Редактировать</a>
+        <form class="inline" method="post" action="{{ url_for('delete', post_id=p.id) }}" onsubmit="return confirm('Удалить пост?');">
+            <button class="btn danger small" type="submit">Удалить</button>
+        </form>
+    </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>У вас пока нет постов. <a href="{{ url_for('create') }}">Создайте первый!</a></p>
+{% endif %}
+{% endblock %}
+
+
+

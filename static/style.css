@@ -1,0 +1,95 @@
+/* Basic Reset */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+
+/* Light/Dark theme */
+:root {
+  --bg: #ffffff;
+  --text: #1e1e1e;
+  --muted: #6b7280;
+  --card: #f7f7f8;
+  --border: #e5e7eb;
+  --primary: #2563eb;
+  --danger: #dc2626;
+}
+
+html[data-theme='dark'] {
+  --bg: #0b0f14;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --card: #0f1720;
+  --border: #1f2937;
+  --primary: #60a5fa;
+  --danger: #f87171;
+}
+
+body { background: var(--bg); color: var(--text); line-height: 1.6; }
+
+.container { width: 100%; max-width: 900px; margin: 0 auto; padding: 0 16px; }
+
+/* Header */
+.site-header { border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg); z-index: 5; }
+.header-inner { display: flex; align-items: center; gap: 16px; padding: 12px 0; }
+.logo { font-weight: 700; text-decoration: none; color: var(--text); }
+.nav { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+.nav a { color: var(--text); text-decoration: none; padding: 6px 10px; border-radius: 6px; }
+.nav a:hover { background: var(--card); }
+.theme-toggle { border: 1px solid var(--border); background: var(--card); color: var(--text); border-radius: 8px; padding: 6px 8px; cursor: pointer; }
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--border); margin-top: 40px; padding: 20px 0; color: var(--muted); font-size: 14px; }
+
+/* Flash messages */
+.flash { display: grid; gap: 8px; margin: 16px 0; }
+.flash-item { padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); }
+.flash-item.success { border-color: #16a34a; }
+.flash-item.warning { border-color: #f59e0b; }
+.flash-item.danger { border-color: var(--danger); }
+.flash-item.info { border-color: #0ea5e9; }
+
+/* Forms */
+.form { display: grid; gap: 12px; max-width: 720px; }
+.form label { display: grid; gap: 6px; font-weight: 600; }
+.form input, .form textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: transparent; color: var(--text); }
+.form input:focus, .form textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 20%, transparent); }
+.form .hint { color: var(--muted); font-size: 14px; margin-top: -4px; }
+.form-actions { display: flex; gap: 8px; }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text); text-decoration: none; cursor: pointer; }
+.btn:hover { filter: brightness(1.02); }
+.btn.primary { background: var(--primary); color: white; border-color: var(--primary); }
+.btn.danger { background: var(--danger); color: white; border-color: var(--danger); }
+.btn.small { padding: 6px 10px; font-size: 14px; }
+
+/* Posts */
+.posts { display: grid; gap: 16px; }
+.post { padding: 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--card); }
+.post-title { margin: 0 0 6px 0; }
+.meta { color: var(--muted); font-size: 14px; margin-bottom: 10px; }
+.post-content p { margin: 0 0 10px 0; }
+.post-content pre { padding: 10px; border-radius: 8px; overflow: auto; background: #0b1220; color: #e5e7eb; }
+
+/* Pagination */
+.pagination { display: flex; align-items: center; gap: 6px; margin-top: 16px; flex-wrap: wrap; }
+.pagination .page { padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px; }
+.pagination .current { background: var(--primary); color: white; border-color: var(--primary); }
+
+/* Profile */
+.profile-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.username { font-size: 20px; font-weight: 700; }
+.email { color: var(--muted); }
+.my-posts { list-style: none; padding: 0; display: grid; gap: 8px; }
+.my-posts li { display: grid; grid-template-columns: 1fr auto auto auto; align-items: center; gap: 8px; padding: 10px; border: 1px solid var(--border); border-radius: 10px; }
+.my-posts .title { font-weight: 600; }
+.my-posts .date { color: var(--muted); font-size: 14px; }
+.inline { display: inline; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .my-posts li { grid-template-columns: 1fr; align-items: start; }
+  .form-actions { flex-direction: column; align-items: stretch; }
+}
+
+
+
